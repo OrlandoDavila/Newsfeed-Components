@@ -111,3 +111,52 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+let articleMaker = (objectData) => {
+
+  let div = document.createElement('div'); //creating eles
+  let h2 = document.createElement('h2');
+  let p = document.createElement('p')
+  let p1 = document.createElement('p');
+  let p2 = document.createElement('p');
+  let p3 = document.createElement('p');
+  let span = document.createElement('span'); 
+
+ 
+  div.classList.add('article')    //add style 
+  h2.textContent = objectData.title;
+  p.classList.add('date');
+  p1.classList.add('date');
+  p2.classList.add('date');
+  p3.classList.add('date'); 
+  p.textContent = objectData.date;
+  p1.textContent = objectData.firstParagraph;
+  p2.textContent = objectData.secondParagraph;
+  p3.textContent = objectData.thirdParagraph;
+  span.classList.add('expandButton');
+  span.innerHTML = "+"
+
+  
+  const parentDiv = document.querySelector('.articles'); //into the DOM
+  parentDiv.appendChild(div);
+  div.appendChild(h2);
+  div.appendChild(p);
+  div.appendChild(p1);
+  div.appendChild(p2);
+  div.appendChild(p3);
+  div.appendChild(span);
+  span.addEventListener('click', () =>{
+    if (div.className === 'article'){
+      div.className = 'article-open'
+    }else {
+      div.className = 'article';
+    }
+  })
+  return div;
+}
+data.forEach(articleMaker);
+
+articleMaker({title:'Look Ma! I is a Burr!',
+date:'May 31, 1985',
+firstParagraph:'ahh!',
+secondParagraph:'Bear Stuff',
+thirdParagraph:'more bear stuff'})
